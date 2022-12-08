@@ -21,7 +21,7 @@ namespace LondonAPI.Filters
             {
 
                 error.ErrorMessage = context.Exception.Message;
-                error.Details = context.Exception.StackTrace;
+                error.Details = context.Exception.StackTrace.ToString();
 
             }
             else

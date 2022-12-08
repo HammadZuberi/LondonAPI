@@ -1,5 +1,7 @@
 using LondonAPI.Filters;
+using LondonAPI.Models;
 using Microsoft.AspNetCore.Mvc.Versioning;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddMvc(options =>
     options.Filters.Add<RequireHttpsOrCloseAttribute>();
 
 });
+
+builder.Services.Configure<HotelInfo>(builder.Configuration.GetSection("Info"));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,6 +33,13 @@ builder.Services.AddApiVersioning(options =>
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
     options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
+});
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("AllowMyPolicy",
+    policy => policy.AllowAnyOrigin()
+    );
+    //policy => policy.WithOrigins("exapmle.com"));
 });
 
 
@@ -51,5 +63,7 @@ else
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowMyPolicy");
 
 app.Run();

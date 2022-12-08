@@ -4,7 +4,7 @@ namespace LondonAPI.Controllers
 {
     [ApiController]
     [Route("/[Controller]")]
-    public class RoomController : Controller
+    public class RoomController : ControllerBase
     {
         [HttpGet(Name = nameof(GetRoom))]
         public IActionResult GetRoom()

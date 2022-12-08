@@ -5,7 +5,7 @@ namespace LondonAPI.Controllers
     [ApiController]
     [Route("/")]
     [ApiVersion("1.0")]
-    public class RootController : Controller
+    public class RootController : ControllerBase
     {
         [HttpGet(Name = nameof(GetRoot))]
 
@@ -19,6 +19,10 @@ namespace LondonAPI.Controllers
                 rooms = new
                 {
                     href = Url.Link(nameof(RoomController.GetRoom), null)
+                },
+                info = new
+                {
+                    href = Url.Link(nameof(InfoController.GetInfo), null)
                 }
             };
 
