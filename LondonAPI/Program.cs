@@ -6,7 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddMvc(options => { options.Filters.Add<JsonExceptionFilter>(); });
+// for adding action filters
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add<JsonExceptionFilter>();
+    options.Filters.Add<RequireHttpsOrCloseAttribute>();
+
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,8 +39,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{// for live do not use localhost etc
+    app.UseHsts();
+}
+//instead of redirecting to enhance transport level security stop http request
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 
