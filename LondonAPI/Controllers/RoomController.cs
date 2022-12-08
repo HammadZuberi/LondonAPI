@@ -6,13 +6,23 @@ namespace LondonAPI.Controllers
     [Route("/[Controller]")]
     public class RoomController : Controller
     {
-        [HttpGet(Name = nameof(GetRooms))]
-        public IActionResult GetRooms()
+        [HttpGet(Name = nameof(GetRoom))]
+        public IActionResult GetRoom()
         {
-            //absolute route
-            var response = new { href = Url.Link(nameof(GetRooms), null) };
+            ////absolute route
+            //var response = new { href = Url.Link(nameof(GetRooms), null) };
 
-            return Ok(response);
+            //return Ok(response);
+            throw new NotImplementedException();
         }
+
+        //[HttpGet(Name = nameof(GetRooms))]
+        //public IActionResult GetRooms()
+        //{
+        //    //absolute route
+        //    var response = new { href = Url.Link(nameof(GetRooms), null) };
+
+        //    return Ok(response);
+        //}
     }
 }

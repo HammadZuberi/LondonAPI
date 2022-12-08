@@ -18,7 +18,7 @@ namespace LondonAPI.Controllers
                 href = Url.Link(nameof(GetRoot), null),
                 rooms = new
                 {
-                    href = Url.Link(nameof(RoomController.GetRooms), null)
+                    href = Url.Link(nameof(RoomController.GetRoom), null)
                 }
             };
 
