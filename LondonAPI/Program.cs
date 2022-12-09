@@ -1,6 +1,8 @@
 using LondonAPI;
 using LondonAPI.Filters;
+using LondonAPI.Infrastructure;
 using LondonAPI.Models;
+using LondonAPI.Service;
 using LondonAPI.Utilities;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -45,8 +47,9 @@ builder.Services.AddCors(option =>
     );
     //policy => policy.WithOrigins("exapmle.com"));
 });
+builder.Services.AddScoped<IRoomService,DefaultRoomService>();
 
-
+builder.Services.AddAutoMapper(opt => opt.AddProfile<MappingProfile>());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

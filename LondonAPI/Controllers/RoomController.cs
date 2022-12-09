@@ -27,14 +27,6 @@ namespace LondonAPI.Controllers
         //    throw new NotImplementedException();
         //}
 
-        [HttpGet(Name = nameof(GetRooms))]
-        public ActionResult GetRooms()
-        {
-            //absolute route
-            var response = new { href = Url.Link(nameof(GetRooms), null) };
-
-            return Ok(response);
-        }
 
         //Get  /rooms/{roomId}
         [HttpGet("{roomId}", Name = nameof(GetRoomByID))]
@@ -51,5 +43,18 @@ namespace LondonAPI.Controllers
             return Ok(room);
         }
 
+        [HttpGet(Name = nameof(GetRooms))]
+        public async Task<ActionResult<List<Room>>> GetRooms()
+        {
+            //absolute route
+            //var response = new { href = Url.Link(nameof(GetRooms), null) };
+
+            var rooms = await _roomService.GetRoomAsync();
+
+            if (rooms == null)
+                return NotFound();
+
+            return Ok(rooms);
+        }
     }
 }

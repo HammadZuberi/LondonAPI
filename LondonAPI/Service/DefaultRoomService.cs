@@ -1,4 +1,5 @@
-﻿using LondonAPI.Models;
+﻿using AutoMapper;
+using LondonAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LondonAPI.Service
@@ -8,14 +9,13 @@ namespace LondonAPI.Service
 
         private readonly HotelApiDbContext _context;
 
-        public DefaultRoomService(HotelApiDbContext context)
+        // inject auto mapper into the service
+        private readonly IMapper _mapper;
+
+        public DefaultRoomService(HotelApiDbContext context, IMapper mapper)
         {
             _context = context;
-        }
-
-        public Task<List<Room>> GetRoomAsync()
-        {
-            throw new NotImplementedException();
+            _mapper = mapper;
         }
 
         public async Task<Room> GetRoomAsyncId(Guid id)
@@ -25,32 +25,30 @@ namespace LondonAPI.Service
             if (room == null)
                 return null;
 
+            return _mapper.Map<Room>(room);
 
-            var response = new Room
-            {
-                Href = null,//Url.Link(nameof(GetRooms), new { roomId = room.Id }),
-                Name = room.Name,
-                Rate = room.Rate / 100.0m
+            //var response = new Room
+            //{
+            //    Href = null,//Url.Link(nameof(GetRooms), new { roomId = room.Id }),
+            //    Name = room.Name,
+            //    Rate = room.Rate / 100.0m
 
-            };
-            return response;
+            //};
+            //return response;
+            //Implemente auto mapper
+
         }
-        //public async Task<List<Room>> GetRoomAsync()
-        //{
-        //    var room = await _context.Rooms.ToListAsync();
-
-        //    if (room == null)
-        //        return null;
 
 
-        //    //var response = new Room
-        //    //{
-        //    //    Href = null,//Url.Link(nameof(GetRooms), new { roomId = room.Id }),
-        //    //    Name = room.Name,
-        //    //    Rate = room.Rate / 100.0m
+        public async Task<List<Room>> GetRoomAsync()
+        {
+            var room = await _context.Rooms.ToListAsync();
 
-        //    //};
-        //    return room;
-        //}
+            if (room == null)
+                return null;
+
+
+            return _mapper.Map<List<Room>>(room);
+        }
     }
 }
