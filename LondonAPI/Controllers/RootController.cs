@@ -19,6 +19,7 @@ namespace LondonAPI.Controllers
                 rooms = new
                 {
                     href = Url.Link(nameof(RoomController.GetRoomByID), null)
+                    
                 },
                 info = new
                 {
