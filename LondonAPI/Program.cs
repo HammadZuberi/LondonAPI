@@ -1,6 +1,9 @@
+using LondonAPI;
 using LondonAPI.Filters;
 using LondonAPI.Models;
+using LondonAPI.Utilities;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +21,7 @@ builder.Services.AddMvc(options =>
 
 builder.Services.Configure<HotelInfo>(builder.Configuration.GetSection("Info"));
 
+builder.Services.AddDbContext<HotelApiDbContext>(options => options.UseInMemoryDatabase("LondonHotelDb"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -65,5 +69,17 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors("AllowMyPolicy");
+
+try
+{
+    SeedData.InitializeDataAsync(builder.Services.BuildServiceProvider());
+}
+catch (Exception ex)
+{
+    //Logger logger;
+    //logger.LogInformation(ex);
+    
+    throw ex;
+}
 
 app.Run();
