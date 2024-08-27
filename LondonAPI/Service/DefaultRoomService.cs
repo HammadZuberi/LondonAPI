@@ -23,7 +23,7 @@ namespace LondonAPI.Service
             var room = await _context.Rooms.SingleOrDefaultAsync(x => x.Id == id);
 
             if (room == null)
-                return null;
+                return null!;
 
             return _mapper.Map<Room>(room);
 
@@ -45,7 +45,7 @@ namespace LondonAPI.Service
             var room = await _context.Rooms.ToListAsync();
 
             if (room == null)
-                return null;
+                return null!;
 
 
             return _mapper.Map<List<Room>>(room);

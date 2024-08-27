@@ -6,8 +6,8 @@ namespace LondonAPI.Filters
 {
     public class JsonExceptionFilter : IExceptionFilter
     {
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment _env;
-        public JsonExceptionFilter(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        private IWebHostEnvironment _env;
+        public JsonExceptionFilter(IWebHostEnvironment env)
         {
             _env = env;
 

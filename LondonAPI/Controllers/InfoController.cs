@@ -21,7 +21,7 @@ namespace LondonAPI.Controllers
         [ProducesResponseType(200)]
         public ActionResult<HotelInfo> GetInfo()
         {
-            _hotelInfo.Href = Url.Link(nameof(GetInfo), null);
+            _hotelInfo.Href = Url.Link(nameof(GetInfo), null)!;
 
             
             return _hotelInfo;

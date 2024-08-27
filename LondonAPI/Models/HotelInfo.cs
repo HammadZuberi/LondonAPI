@@ -2,19 +2,19 @@
 {
     public class HotelInfo : Resource
     {
-        public string Title { get; set; }
-        public string TagLine { get; set; }
-        public string Email { get; set; }
-        public string Website { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string TagLine { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Website { get; set; } = string.Empty;
         public Address Location { get; set; }
 
     }
 
     public class Address
     {
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public string Street { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
 
     }
 }
