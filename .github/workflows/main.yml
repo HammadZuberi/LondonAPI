@@ -18,10 +18,10 @@ jobs:
          dotnet-versions: '6.0.x'
      
      - name: Restore dependencies
-       run: dotnet restore ./LONDONAPI.sln
+       run: dotnet restore ./LondonAPI.sln
        
      - name: Build
-       run: dotnet build ./LONDONAPI.sln --configuration Release --no-restore
+       run: dotnet build ./LondonAPI.sln --configuration Release --no-restore
      
      - name: Publish 
-       run: dotnet publish ./LONDONAPI.sln --configuration Release --no-build
+       run: dotnet publish ./LondonAPI.sln --configuration Release --no-build
