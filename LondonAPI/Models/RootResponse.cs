@@ -10,7 +10,7 @@ namespace LondonAPI.Models
 
         public static RootResponse To(string routeName, object routeValues) => new RootResponse
         {
-            Releations = null,
+            //Releations = null,
             RouteName = routeName,
             RouteValues = routeValues,
             Methods = GETMethod
@@ -19,19 +19,19 @@ namespace LondonAPI.Models
 
         [JsonProperty(Order = -4)]
 
-        public string Href { get; set; }
+        public string Href { get; set; } = string.Empty;
 
         [JsonProperty(Order = -3, PropertyName = "rel", NullValueHandling = NullValueHandling.Ignore)]
-        public string[] Releations { get; set; }
+        public string[] Releations { get; set; } = default!;
 
         [JsonProperty(Order = -2, DefaultValueHandling = DefaultValueHandling.Ignore, NullValueHandling = NullValueHandling.Ignore)]
         [DefaultValue(GETMethod)]
-        public string Methods { get; set; }
+        public string Methods { get; set; }=string.Empty;
 
         //stores route name and values  to rwritten by the link filter
         [JsonIgnore]
-        public string RouteName { get; set; }
+        public string RouteName { get; set; } = string.Empty;
         [JsonIgnore]
-        public object RouteValues { get; set; }
+        public object RouteValues { get; set; } = default!;
     }
 }
