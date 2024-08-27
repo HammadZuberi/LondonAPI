@@ -15,11 +15,11 @@ namespace LondonAPI.Infrastructure
 
         public RootResponse Rewrite(RootResponse rootResponse)
         {
-            if (rootResponse == null) return null;
+            if (rootResponse == null) return null!;
 
             return new RootResponse
             {
-                Href = _urlHelper.Link(rootResponse.RouteName, rootResponse.RouteValues),
+                Href = _urlHelper.Link(rootResponse.RouteName, rootResponse.RouteValues)!,
                 Methods = rootResponse.Methods,
                 Releations = rootResponse.Releations
                 };

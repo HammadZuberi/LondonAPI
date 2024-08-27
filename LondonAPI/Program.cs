@@ -75,7 +75,7 @@ app.UseCors("AllowMyPolicy");
 
 try
 {
-    SeedData.InitializeDataAsync(builder.Services.BuildServiceProvider());
+   await SeedData.InitializeDataAsync(builder.Services.BuildServiceProvider());
 }
 catch (Exception ex)
 {
